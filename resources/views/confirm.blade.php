@@ -27,7 +27,7 @@
 
 
   <table>
-  <form action="/thanks" method="post">
+  <form action="/content/thanks" method="post">
   @csrf
     <tr>
       <td>お名前</td>  
@@ -83,7 +83,7 @@
     <input type="submit" value="送信">
     </form>
     
-    <form action='/back' method="get">
+    <form action='/content/back' method="get">
     <input type="submit" value="修正">
 </form>
   

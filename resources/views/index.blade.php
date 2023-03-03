@@ -97,7 +97,7 @@
   <h2 class="title">お問い合わせ</h2>
   
     <table class="form">
-      <form action="/store" method="post">
+      <form action="/content/store" method="post">
       @csrf
 
 

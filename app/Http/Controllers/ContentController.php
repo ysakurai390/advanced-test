@@ -22,19 +22,7 @@ class ContentController extends Controller
         return view('index');
     }
 
-    //public function store(Request $request)
-    //{
-        //ここから
-        //$contents = Content::all();
-        //$form = new Content();
-        //ここまで
-        //$form = new Content();
-        //$content = $request->all();
-        //unset($form['_token']);
-        //Content::create($content);
-        //return view('confirm', $content);
-    //}
-
+    
     public function store(ContentRequest $request)
     {
         $data = [
@@ -89,13 +77,34 @@ class ContentController extends Controller
         return view('find');
     }
 
-    public function search(Request $request)
+    //うまくいかないので０つけて一旦保留
+    public function search0(Request $request)
     {
         $contents = Content::where('lastname', 'LIKEBINARY',"%{$request->lastname}%")->get();
+        return view('find', compact('contents'));
+    }
+    //
+
+    //とりあえずデータを表示させる
+    public function search(Request $request)
+    {
+        $contents = Content::all();
+        //ページネーション
+        $pages = Content::Paginate(10);
         $param = [
             'contents' => $contents,
+            'pages' => $pages
         ];
         return view('find', $param);
+    }
+    //
+
+
+    public function destroy(Request $request)
+    {
+        $contents = Content::find($request->id);
+        Content::find($request->id)->delete();
+        return redirect('/content/search');
     }
 
 }

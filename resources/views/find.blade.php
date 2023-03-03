@@ -52,7 +52,7 @@
   <h2>管理システム</h2>
 
   <div class="conteiner">
-    <form action="/search" method="get" class="content-search">
+    <form action="/content/search" method="get" class="content-search">
     @csrf
 
     <table>
@@ -84,7 +84,7 @@
       </table>
       <input class="button-search" type="submit" value="検索">
     </form>
-    <a class="butoon-back" href="/find">リセット</a>
+    <a class="butoon-back" href="/content/find">リセット</a>
 </div>
 
 
@@ -103,30 +103,23 @@
 
     @if (@isset($contents))
     @foreach($contents as $content)
-    <form action="/search" method="get">
+    <form action="/content/delete" method="post">
     @csrf
-    
     
     <tr>
       <td>{{$content->id}}</td>
-      <td>{{$content->lastname}}{{$content->firstname}}</td>
+      <td>{{$content->lastname}}<span> </span>{{$content->firstname}}</td>
       <td>{{$content->gender}}</td>
       <td>{{$content->email}}</td>
       <td>{{$content->opinion}}</td>
-      <td><input type="hidden" name="postcode" value="{{$content->postcode}}"></td>
-      <td><input type="hidden" name="address" value="{{$content->address}}"></td>
-      <td><input type="hidden" name="building_name" value="{{$content->building_name}}"></td>
-      <td><input type="hidden" name="updated_at" value="{{$contents->updated_at}}"></td>
-      <td><input type="hidden" name="created_at" value="{{$contents->created_at}}"></td>
-      <td><input type="submit" action="/delete" method="post" value="削除"></td>
+      <td><input type="submit" value="削除"></td>
     </tr>
   
-
-
     </form>
     @endforeach
     @endif
   </table>
+  
 
   </div>
 
